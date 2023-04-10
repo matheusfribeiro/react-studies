@@ -1,25 +1,26 @@
 import './App.css'
-import {User} from './User'
-import { Planets } from './Planets'
+import { useState } from 'react'
 
 function App() {
-  const planets = [
-    { name: "Mars", isGasPlanet: false },
-    { name: "Earth", isGasPlanet: false },
-    { name: "Jupiter", isGasPlanet: true },
-    { name: "Venus", isGasPlanet: false },
-    { name: "Neptune", isGasPlanet: true },
-    { name: "Uranus", isGasPlanet: true },
-  ]
+  const [textColor, setTextColor] = useState("black")
+  const [count, setCount] = useState(0)
 
-  // test for echo
+  
   
   return (
     <div className="App">
-      {planets.map((planet, key) => {
-        if (planet.isGasPlanet) return <h1 key={key}> {planet.name} </h1>
-      })}
-      
+      <button onClick={() => {
+        setTextColor( textColor === 'green' ? "red" : 'green')
+      }}> Change Color</button>
+      <h1 style={{color: textColor}}> Hi, my name is Matt</h1>
+
+      <div>
+
+        <button onClick={() => setCount(count + 1)}>Increase</button>
+        <button onClick={() => setCount(count - 1)}>Decrease</button>
+        <button onClick={() => setCount(0)}>Set to zero</button>
+        <h1>{count}</h1>
+      </div>
     </div>
   )
 }
