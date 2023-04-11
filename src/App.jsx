@@ -1,25 +1,56 @@
 import './App.css'
 import { useState } from 'react'
+import { Task } from './Task'
 
 function App() {
-  const [textColor, setTextColor] = useState("black")
-  const [count, setCount] = useState(0)
+  const [todoList, setTodoList] = useState([])
+  const [newTask, setNewTask] = useState("")
 
-  
-  
+  const handleChange = (e) => {
+    setNewTask(e.target.value)
+    
+  }
+
+  const addTask = () => {
+    const task = {
+      id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
+      taskName: newTask,
+      completed: false
+    }
+    setTodoList([...todoList, task])
+
+  }
+
+  const deleteTask = (id) => {
+
+    setTodoList(todoList.filter(task => task.id !== id))
+    
+  }
+
+  const completeTask = (id) => {
+
+    todoList.map((task) => {
+      if (id === task.id) {
+        task.completed = true
+      }
+      
+    })
+    
+
+    
+  }
+
   return (
     <div className="App">
-      <button onClick={() => {
-        setTextColor( textColor === 'green' ? "red" : 'green')
-      }}> Change Color</button>
-      <h1 style={{color: textColor}}> Hi, my name is Matt</h1>
+      <div className='addTask'>
+        <input onChange={handleChange} type="text" />
+        <button onClick={addTask}>Add Task</button>
+      </div>
 
-      <div>
-
-        <button onClick={() => setCount(count + 1)}>Increase</button>
-        <button onClick={() => setCount(count - 1)}>Decrease</button>
-        <button onClick={() => setCount(0)}>Set to zero</button>
-        <h1>{count}</h1>
+      <div className='list'>
+        {todoList.map((task, key) => {
+          return <Task key={key} taskName={task.taskName} id={task.id} deleteTask={deleteTask} completeTask={completeTask}/>
+        })}
       </div>
     </div>
   )
