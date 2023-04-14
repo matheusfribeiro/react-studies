@@ -26,6 +26,17 @@ function App() {
       setAge(response.data)
     })
   }
+
+
+  const [excuse, setExcuse] = useState("")
+
+  const fetchExcuse = (excuse) => {
+    Axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuse}`).then(response => {
+      setExcuse(response.data[0].excuse)
+    })
+    
+  }
+
   
   
 
@@ -39,6 +50,14 @@ function App() {
       <h3>Name: {age?.name} </h3>
       <h3>Predicted Age: {age?.age} </h3>
       <h3>Count: {age?.count} </h3>
+
+
+      <h1>Generate an excuse</h1>
+      <button onClick={() => fetchExcuse("party")} > Party</button>
+      <button onClick={() => fetchExcuse("family")}> Family</button>
+      <button onClick={() => fetchExcuse("office")}> Office</button>
+
+      <p>{excuse}</p>
     </div>
   )
 }
