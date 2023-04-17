@@ -6,12 +6,18 @@ import { Home } from './pages/Home'
 import { Menu } from './pages/Menu'
 import { Contact, dataLoader } from './pages/Contact'
 import { Profile } from './pages/Profile'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 
 export const AppContext = createContext()
 
 function App() {
   const [username, setUsername] = useState("MattTech")
+  const client = new QueryClient({defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
+    }
+  }})
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -31,9 +37,11 @@ function App() {
   return (
     <div className="App">
       <h1>Hello react</h1>
-      <AppContext.Provider value={{username, setUsername}}>
-        <RouterProvider router={router} />
-      </AppContext.Provider>
+      <QueryClientProvider client={client}>
+        <AppContext.Provider value={{username, setUsername}}>
+          <RouterProvider router={router} />
+        </AppContext.Provider>
+      </QueryClientProvider>
       
     </div>
   )
