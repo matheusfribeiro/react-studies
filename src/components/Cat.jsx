@@ -2,7 +2,7 @@ import { useGetCat } from "./useGetCat"
 
 
 export const Cat = () => {
-  const {data, isCatLoading, refetchData} =useGetCat()
+  const {data, isCatLoading, refetchData} = useGetCat()
 
   if (isCatLoading) return <h1>Loading...</h1>
 
