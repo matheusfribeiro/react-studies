@@ -1,18 +1,21 @@
 import './App.css'
-import { useCounter } from './components/useCounter'
+import { Person } from './components/Person'
 
 
 
 
 function App() {
-  const [counter, increaseCounter, decreaseCounter, resetCounter] = useCounter()
+  
 
   return (
     <div className="App">
-      <button onClick={increaseCounter}>Increase</button>
-      <button onClick={decreaseCounter}>Decrease</button>
-      <button onClick={resetCounter}>Reset</button>
-      <h4>{counter}</h4>
+      <Person 
+        name="Matheus"
+        email="matheus@email.com"
+        age={26}
+        isMarried={true}
+        friends={["joao", "jose", "pedro", "ricardo"]}
+      />
       
       
     </div>
