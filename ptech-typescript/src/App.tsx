@@ -2,6 +2,7 @@ import './App.css'
 import { Person, Country } from './components/Person'
 
 function App() {
+  let myTuple: [number, string, string[]]
 
 
   return (
