@@ -1,20 +1,18 @@
 import './App.css'
-import { Person, Country } from './components/Person'
+import { Outlet } from 'react-router-dom'
+import { Navbar } from './components/Navbar'
+
 
 function App() {
-  let myTuple: [number, string, string[]]
+  
 
 
   return (
     <div className="App">
-      <Person 
-        name="Matheus"
-        email="matheus@email.com"
-        age={21}
-        isMarried={true}
-        friends={["joao", "jose", "pedro", "ricardo"]}
-        country={Country.Brazil}
-      />
+      <Navbar />
+      <h1>App</h1>
+      <Outlet />
+      <p>footer</p>
     </div>
   )
 }
